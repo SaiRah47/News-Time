@@ -5,21 +5,22 @@ export const NewsContext = createContext();
 
 export const NewsContextProvider = (props) => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const apikey = "ea7617383a904e069ffe9f4955c4065a";
 
   useEffect(() => {
-    axios
-      .get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${apikey}`)
-      .then((response) => {
-        console.log("I am here..");
-        console.log(response.data.articles);
-        setData(response.data);
-      })
-      .catch((error) => console.log(error));
+    async function fetchData() {
+      const response = await axios.get(
+        `https://newsapi.org/v2/top-headlines?country=in&apiKey=${apikey}`
+      );
+      setData(response.data);
+      setIsLoading(false);
+    }
+    fetchData();
   }, []);
 
   return (
-    <NewsContext.Provider value={{ data }}>
+    <NewsContext.Provider value={{ data, isLoading }}>
       {props.children}
     </NewsContext.Provider>
   );
