@@ -11,7 +11,7 @@ function News(props) {
   ) : (
     <div className="row" style={{ marginBottom: "100px" }}>
       {data.articles.map((news) => (
-        <div className="col col-md-6 col-lg-3" key={news.url}>
+        <div className="col-sm-12 col-md-6 col-lg-3" key={news.url}>
           <Article key={news.url} data={news} />
         </div>
       ))}

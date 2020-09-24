@@ -18,7 +18,7 @@ export default function Article({ data }) {
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p>{data.author ? data.author : "TIMESOFINDIA.COM"}</p>
-          <p>{description}</p>
+          <p>{data.content}</p>
           <a href={data.url} className="btn btn-outline-primary">
             Read More
           </a>
